@@ -1,0 +1,13 @@
+# Maintainer: CrestEditor Team <contact@crestcode.dev>
+pkgname=chsh
+pkgver=1.0.0
+pkgrel=0
+pkgdesc="Change login shell utility for CrestEditor"
+url="https://github.com/cresteditor/Crest-Tools"
+arch="aarch64"
+license="MIT"
+options="!check !strip"
+
+package() {
+    install -Dm755 "$startdir"/chsh "$pkgdir"/usr/bin/chsh
+}
