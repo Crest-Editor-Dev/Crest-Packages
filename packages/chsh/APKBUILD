@@ -1,11 +1,12 @@
 # Maintainer: CrestEditor Team <contact@crestcode.dev>
 pkgname=chsh
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=0
 pkgdesc="Change login shell utility for CrestEditor"
 url="https://github.com/cresteditor/Crest-Tools"
 arch="aarch64"
 license="MIT"
+depends="jq"
 options="!check !strip"
 
 package() {
