@@ -1,6 +1,6 @@
 # Crest Alpine APK Repository (Crest-Packages)
 
-Official Alpine Linux APK package repository for CrestCode, featuring cryptographic RSA signing, GitHub Pages hosting, and automated index generation.
+Official Alpine Linux APK package repository for CrestEditor, featuring cryptographic RSA signing, GitHub Pages hosting, and automated index generation.
 
 ---
 
@@ -15,7 +15,7 @@ Crest-Packages/
 │       └── publish-apk-repo.yml   # GitHub Actions (RSA signing & GitHub Pages deployment)
 ├── aarch64/                       # Architecture package pool & repository index
 │   ├── APKINDEX.tar.gz            # Signed repository index archive
-│   └── cpm-0.1.0-r0.apk           # CrestCode Package Manager binary package
+│   └── cpm-0.1.0-r0.apk           # CrestEditor Package Manager binary package
 ├── keys/
 │   └── crest@crestcode.rsa.pub    # Public RSA key for client package verification
 ├── packages/
@@ -29,9 +29,9 @@ Crest-Packages/
 
 ---
 
-## 🚀 Client Setup (Alpine / CrestCode)
+## 🚀 Client Setup (Alpine / CrestEditor)
 
-To use this repository inside Alpine Linux or the CrestCode terminal:
+To use this repository inside Alpine Linux or the CrestEditor terminal:
 
 ### 1. Trust Repository Public Key
 Download the official repository public key into `/etc/apk/keys/`:
@@ -71,7 +71,7 @@ chmod +x scripts/generate-apk-repo.sh
 This script:
 1. Scans `aarch64/` for `.apk` packages.
 2. Runs `apk index` to construct `APKINDEX.tar.gz`.
-3. Signs `APKINDEX.tar.gz` with the CrestCode RSA private key.
+3. Signs `APKINDEX.tar.gz` with the CrestEditor RSA private key.
 
 ---
 

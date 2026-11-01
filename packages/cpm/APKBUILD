@@ -1,8 +1,8 @@
-# Maintainer: CrestCode Team <contact@crestcode.dev>
+# Maintainer: CrestEditor Team <contact@crestcode.dev>
 pkgname=cpm
 pkgver=0.1.1
 pkgrel=0
-pkgdesc="CrestCode Package Manager - Modern APK frontend & Extension Manager"
+pkgdesc="CrestEditor Package Manager - Modern APK frontend & Extension Manager"
 url="https://github.com/crestcode/cpm"
 arch="aarch64"
 license="MIT"

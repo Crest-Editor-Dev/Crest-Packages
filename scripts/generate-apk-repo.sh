@@ -39,7 +39,7 @@ for arch in "${ARCHES[@]}"; do
 
     # Generate APKINDEX.tar.gz
     apk index -v \
-        --description "CrestCode Alpine Repository" \
+        --description "CrestEditor Alpine Repository" \
         -o APKINDEX.tar.gz \
         *.apk
 
