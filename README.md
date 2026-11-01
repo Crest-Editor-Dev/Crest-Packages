@@ -36,13 +36,13 @@ To use this repository inside Alpine Linux or the CrestCode terminal:
 ### 1. Trust Repository Public Key
 Download the official repository public key into `/etc/apk/keys/`:
 ```bash
-wget -O /etc/apk/keys/crest@crestcode.rsa.pub https://crestcode.github.io/Crest-Packages/keys/crest@crestcode.rsa.pub
+wget -O /etc/apk/keys/crest@crestcode.rsa.pub https://cresteditor.github.io/Crest-Packages/keys/crest@crestcode.rsa.pub
 ```
 
 ### 2. Add Repository URL
 Add the repository to `/etc/apk/repositories`:
 ```bash
-echo "https://crestcode.github.io/Crest-Packages" >> /etc/apk/repositories
+echo "https://cresteditor.github.io/Crest-Packages" >> /etc/apk/repositories
 ```
 
 ### 3. Sync & Install Packages
