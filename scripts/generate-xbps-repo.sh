@@ -29,16 +29,16 @@ for arch in "${ARCHES[@]}"; do
 
     echo "    Found ${xbps_count} package(s). Building repodata..."
 
-    # Add/update all packages into repodata
-    xbps-rindex -a *.xbps
+    # Add/update all packages into repodata with target architecture explicitly set
+    XBPS_TARGET_ARCH="${arch}" xbps-rindex -a *.xbps
 
     # Sign packages and repository index if private key is present
     if [ -f "${PRIV_KEY}" ]; then
         echo "    Signing packages with ${PRIV_KEY}..."
-        xbps-rindex --privkey "${PRIV_KEY}" --sign-pkg *.xbps
+        XBPS_TARGET_ARCH="${arch}" xbps-rindex --privkey "${PRIV_KEY}" --sign-pkg *.xbps
 
         echo "    Signing repository index for ${arch}..."
-        xbps-rindex --privkey "${PRIV_KEY}" --sign --signedby "${SIGN_IDENTITY}" .
+        XBPS_TARGET_ARCH="${arch}" xbps-rindex --privkey "${PRIV_KEY}" --sign --signedby "${SIGN_IDENTITY}" .
         echo "    Repository index successfully signed!"
     else
         if [ "${REQUIRE_SIGNING:-0}" = "1" ]; then
