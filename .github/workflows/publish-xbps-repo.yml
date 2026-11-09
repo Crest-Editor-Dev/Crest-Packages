@@ -1,0 +1,68 @@
+name: Publish Crest Void Linux XBPS Repository
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/void-linux/void-glibc-full:latest
+    steps:
+      - name: Install System Dependencies
+        shell: sh
+        run: |
+          xbps-install -Sy -y xbps || true
+          xbps-install -y -u || true
+          xbps-install -y bash git openssl ca-certificates
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Sign & Generate XBPS Repository
+        env:
+          XBPS_PRIVATE_KEY: ${{ secrets.XBPS_PRIVATE_KEY || secrets.PRIVATE_PEM }}
+          REQUIRE_SIGNING: "1"
+        run: |
+          if [ -n "$XBPS_PRIVATE_KEY" ]; then
+            echo "==> Importing production XBPS RSA signing key..."
+            mkdir -p keys
+            echo "$XBPS_PRIVATE_KEY" > keys/crest@crestcode.rsa
+            chmod 600 keys/crest@crestcode.rsa
+          else
+            echo "::warning::XBPS_PRIVATE_KEY secret is not set!"
+          fi
+
+          echo "==> Running XBPS repo index generation..."
+          chmod +x scripts/generate-xbps-repo.sh
+          ./scripts/generate-xbps-repo.sh
+
+          # Remove private key before artifact upload
+          rm -f keys/crest@crestcode.rsa
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

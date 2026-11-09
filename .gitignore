@@ -1,11 +1,16 @@
 # Private keys (Never commit private signing keys!)
 *.rsa
 !*.rsa.pub
+*.pem
 keys/*.rsa
 !keys/*.rsa.pub
+keys/*.pem
+!keys/*.plist
 
 # Temporary & build caches
 .abuild/
 *.tmp
 *.log
 **/target/
+hostdir/
+masterdir/

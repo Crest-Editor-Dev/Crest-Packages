@@ -1,0 +1,14 @@
+# Template file for 'chsh'
+pkgname=chsh
+version=1.0.1
+revision=1
+archs="noarch"
+depends="jq"
+short_desc="Change login shell utility for CrestEditor"
+maintainer="CrestEditor Team <contact@crestcode.dev>"
+license="MIT"
+homepage="https://github.com/cresteditor/Crest-Tools"
+
+do_install() {
+	vbin ${FILESDIR}/chsh
+}
