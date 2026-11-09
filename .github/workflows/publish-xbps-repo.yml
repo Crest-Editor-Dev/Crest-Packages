@@ -48,6 +48,10 @@ jobs:
             echo "::warning::XBPS_PRIVATE_KEY secret is not set!"
           fi
 
+          echo "==> Building XBPS packages from srcpkgs..."
+          chmod +x scripts/build-packages.sh
+          ./scripts/build-packages.sh
+
           echo "==> Running XBPS repo index generation..."
           chmod +x scripts/generate-xbps-repo.sh
           ./scripts/generate-xbps-repo.sh

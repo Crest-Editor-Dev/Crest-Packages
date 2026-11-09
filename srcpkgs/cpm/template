@@ -2,7 +2,7 @@
 pkgname=cpm
 version=0.1.1
 revision=1
-archs="aarch64 x86_64"
+archs="aarch64"
 short_desc="CrestEditor Package Manager - Modern XBPS frontend & Extension Manager"
 maintainer="CrestEditor Team <contact@crestcode.dev>"
 license="MIT"
